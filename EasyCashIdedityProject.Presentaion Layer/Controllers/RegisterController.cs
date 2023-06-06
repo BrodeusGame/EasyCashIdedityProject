@@ -1,4 +1,5 @@
-﻿using EasyCashIdentityProject.EntitiyLayer.Concrete;
+﻿using EasyCashIdentityProject.DtoLayer.Dtos.AppUserDtos;
+using EasyCashIdentityProject.EntitiyLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,8 +14,29 @@ namespace EasyCashIdedityProject.Presentaion_Layer.Controllers
 			_userManager = userManager;
 		}
 
+		[HttpGet]
 		public IActionResult Index()
 		{
+			return View();
+		}
+		[HttpPost]
+		public async Task<IActionResult> Index(AppUserRegisterDto appUserRegisterDto)
+		{
+			if (ModelState.IsValid)
+			{
+				AppUser appUser = new AppUser()
+				{
+					UserName = appUserRegisterDto.Username,
+					Name = appUserRegisterDto.Name,
+					Surname = appUserRegisterDto.Surname,
+					Email = appUserRegisterDto.Email,
+				};
+				var result = await _userManager.CreateAsync(appUser, appUserRegisterDto.Password);
+				if (result.Succeeded)
+				{
+					return RedirectToAction("Index", "ConfirMail");
+				}
+			}
 			return View();
 		}
 	}
