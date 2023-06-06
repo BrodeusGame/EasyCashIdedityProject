@@ -13,5 +13,10 @@ namespace EasyCashIdentityProject.EntitiyLayer.Concrete
         public string CustomerAccountProcessType { get; set; }
         public decimal CustomerAccountAmount { get; set; }
         public DateTime CustomerAccountProcessDate { get; set; }
+       
+    
     }
 }
+        /*
+         Id - İşlemTüre(Gelen,Giden,Ödeme) - Miktar - Tarih - Alıcı - Gönderici 
+         */
