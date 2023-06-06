@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace EasyCashIdentityProject.DataAccessLayer.Concrete
 {
-    public class Context : IdentityDbContext
-    {
+    public class Context : IdentityDbContext<AppUser, AppRole, int>
+	{
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("server=DESKTOP-0TVS0DI;initial catalog = EasycashDb;integrated Security=true");
+            optionsBuilder.UseSqlServer("server=DESKTOP-T91SEV7\\MSSQLSERVER01;initial catalog = EasycashDb;integrated Security=true");
 
         }
         public DbSet<CustomerAccount> CustomerAccounts { get; set; }
