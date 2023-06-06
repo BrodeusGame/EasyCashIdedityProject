@@ -9,5 +9,6 @@ namespace EasyCashIdentityProject.DataAccessLayer.Abstrat
 {
 	public interface ICustomerAccountDal : IGenericDal<CustomerAccount>
 	{
+		CustomerAccount GetByID(int id);
 	}
 }
